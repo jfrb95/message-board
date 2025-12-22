@@ -1,0 +1,72 @@
+[
+  {
+    "first_name": "Emma",
+    "last_name": "Johnson",
+    "email": "emma.johnson@email.com",
+    "password": "securePass123!",
+    "username": "emma_j"
+  },
+  {
+    "first_name": "Liam",
+    "last_name": "Smith",
+    "email": "liam.smith@email.com",
+    "password": "mySecret456@",
+    "username": "liam_smith"
+  },
+  {
+    "first_name": "Olivia",
+    "last_name": "Williams",
+    "email": "olivia.w@email.com",
+    "password": "oliviaPass789#",
+    "username": "oliviaw"
+  },
+  {
+    "first_name": "Noah",
+    "last_name": "Brown",
+    "email": "noah.brown@email.com",
+    "password": "noahBrown$101",
+    "username": "noah_b"
+  },
+  {
+    "first_name": "Ava",
+    "last_name": "Jones",
+    "email": "ava.jones@email.com",
+    "password": "avaJ202!secure",
+    "username": "avajones"
+  },
+  {
+    "first_name": "Ethan",
+    "last_name": "Garcia",
+    "email": "ethan.g@email.com",
+    "password": "ethanG303#pass",
+    "username": "ethan_garcia"
+  },
+  {
+    "first_name": "Sophia",
+    "last_name": "Miller",
+    "email": "sophia.miller@email.com",
+    "password": "sophiaM404@word",
+    "username": "sophiam"
+  },
+  {
+    "first_name": "Jackson",
+    "last_name": "Davis",
+    "email": "jackson.d@email.com",
+    "password": "jacksonD505!key",
+    "username": "jacksond"
+  },
+  {
+    "first_name": "Isabella",
+    "last_name": "Rodriguez",
+    "email": "isabella.r@email.com",
+    "password": "bellaR606#safe",
+    "username": "bella_rod"
+  },
+  {
+    "first_name": "Lucas",
+    "last_name": "Martinez",
+    "email": "lucas.m@email.com",
+    "password": "lucasM707@guard",
+    "username": "lucasmartinez"
+  }
+]

@@ -1,0 +1,20 @@
+<h1>Users Page</h1>
+
+<section class="secton-container">
+  <h2>All Users</h2>
+  <ul class="user-list">
+    <% users.forEach((user) => { %>
+      <% console.log(user) %>
+      <li>
+        <h3><%= user.username %></h3>
+        <p><%= user["first_name"] %> <%= user["last_name"] %></p>
+        <p><%= user.email %></p>
+        <form action="/users/<%= user.id %>/delete" method="POST">
+          <button>Delete User</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+</section>
+
+<%- contentFor('title') %> All Users || The Message Board

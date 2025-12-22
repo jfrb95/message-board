@@ -1,0 +1,27 @@
+<h1>The Message Board Sign-Up</h1>
+
+<form action="/users/sign-up" method="POST">
+  <label>
+    First Name
+    <input type="text" id="first-name" name="first-name">
+  </label>
+  <label>
+    Last Name
+    <input type="text" id="last-name" name="last-name">
+  </label>
+  <label>
+    Username
+    <input type="text" id="username" name="username" required>
+  </label>
+  <label>
+    Email
+    <input type="text" id="email" name="email" required>
+  </label>
+  <label>
+    Password
+    <input type="text" id="password" name="password" required>
+  </label>
+  <button>Register Account</button>
+</form>
+
+<%- contentFor('title') %> Sign-Up || The Message Board
