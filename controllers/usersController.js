@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const passport = require("../config/passport");
 
 exports.usersPageGET = async function(req, res) {
 
@@ -30,4 +31,12 @@ exports.deleteUserPOST = async function(req, res) {
   await db.deleteUser(req.params.userId);
 
   res.redirect("/users");
-}
+};
+
+exports.logInPageGET = async function(req, res) {
+  res.render("log-in");
+};
+
+exports.logUserInPOST = async function(req, res) {
+
+};

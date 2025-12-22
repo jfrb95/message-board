@@ -1,0 +1,15 @@
+<h1>The Message Board Log In</h1>
+
+<form action="/users/log-in" method="POST">
+  <label>
+    Username
+    <input type="text" id="username" name="username" required>
+  </label>
+  <label>
+    Password
+    <input type="text" id="password" name="password" required>
+  </label>
+  <button>Log In</button>
+</form>
+
+<%- contentFor('title') %> Log-In || The Message Board

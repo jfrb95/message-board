@@ -9,6 +9,11 @@ usersRouter.route("/sign-up")
   .post(usersController.registerUserPOST)
 ;
 
+usersRouter.route("/log-in")
+  .get(usersController.logInPageGET)
+  .post(usersController.logUserInPOST)
+;
+
 usersRouter.post("/:userId/delete", usersController.deleteUserPOST);
 
 module.exports = usersRouter;
