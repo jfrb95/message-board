@@ -37,6 +37,7 @@ exports.logInPageGET = async function(req, res) {
   res.render("log-in");
 };
 
-exports.logUserInPOST = async function(req, res) {
-
-};
+exports.logUserInPOST = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/"
+});
