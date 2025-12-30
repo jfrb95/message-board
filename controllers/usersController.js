@@ -1,5 +1,6 @@
 const db = require("../db/queries");
 const passport = require("../config/passport");
+const bcrypt = require("bcryptjs");
 
 exports.usersPageGET = async function(req, res) {
 
@@ -12,18 +13,25 @@ exports.signUpPageGET = async function(req, res) {
   res.render("sign-up");
 };
 
-exports.registerUserPOST = async function(req, res) {
+exports.signUpPOST = async function(req, res, next) {
 
-  const data = req.body;
+  try {
 
-  const firstName = data['first-name'];
-  const lastName = data['last-name'];
-  const username = data['username'];
-  const email = data['email'];
-  const password = data['password'];
+    const data = req.body;
 
-  await db.addNewUser(firstName, lastName, username, email, password);
-  res.redirect("/");
+    const firstName = data['first-name'];
+    const lastName = data['last-name'];
+    const username = data['username'];
+    const email = data['email'];
+    const hashedPassword = await bcrypt.hash(data['password'], 10);
+
+    await db.addNewUser(firstName, lastName, username, email, hashedPassword);
+    res.redirect("/");
+
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 };
 
 exports.deleteUserPOST = async function(req, res) {

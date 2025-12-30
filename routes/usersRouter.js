@@ -8,7 +8,7 @@ usersRouter.get("/", usersController.usersPageGET);
 
 usersRouter.route("/sign-up")
   .get(usersController.signUpPageGET)
-  .post(usersController.registerUserPOST)
+  .post(usersController.signUpPOST)
 ;
 
 usersRouter.route("/log-in")
