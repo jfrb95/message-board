@@ -24,7 +24,18 @@ const db = {
       `, [id]
     );
   },
-  
+
+  async findUsername(username) {
+    const result = await pool.query(
+      `
+        SELECT EXISTS (
+          SELECT 1 FROM users
+          WHERE username=$1);
+      `, [username]
+    );
+
+    return result;
+  },
 };
 
 module.exports = db;

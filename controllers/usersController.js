@@ -2,6 +2,7 @@ const db = require("../db/queries");
 const passport = require("../config/passport");
 const bcrypt = require("bcryptjs");
 
+
 exports.usersPageGET = async function(req, res) {
 
   const users = await db.getAllUsers();
@@ -49,3 +50,12 @@ exports.logUserInPOST = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/"
 });
+
+exports.usernameExists = async function(username) {
+  const { rows } = await db.findUsername(username);
+  const result = rows[0].exists;
+
+  console.log(result);
+
+  return result;
+};
