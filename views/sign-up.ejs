@@ -3,6 +3,13 @@
 <form action="/users/sign-up" method="POST">
   <label>
     First Name
+    <% if (locals.errors && locals.errors.hasOwnProperty("first-name")) { %>
+      <% locals.errors["first-name"].forEach(msg => { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="first-name" name="first-name">
   </label>
   <label>

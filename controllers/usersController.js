@@ -55,7 +55,5 @@ exports.usernameExists = async function(username) {
   const { rows } = await db.findUsername(username);
   const result = rows[0].exists;
 
-  console.log(result);
-
   return result;
 };
