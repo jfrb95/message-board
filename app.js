@@ -5,6 +5,9 @@ const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const passport = require("./config/passport");
 
+//ADD ERROR HANDLING MIDDLEWARE. THIS IS IN ODIN I BELIEVE
+
+
 const app = express();
 
 const messagesRouter = require("./routes/messagesRouter");
@@ -35,6 +38,16 @@ app.use(session({
 );
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
+
+
+//route debugging:
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  console.log('Request body:', req.body);
+  console.log('Request params:', req.params);
+  console.log('---');
+  next();
+});
 
 app.use("/messages", messagesRouter);
 app.use("/users", usersRouter);

@@ -36,6 +36,11 @@ const db = {
 
     return result;
   },
+
+  async getAllMessages() {
+    const { rows } = await pool.query("SELECT * FROM messages");
+    return rows;
+  },
 };
 
 module.exports = db;

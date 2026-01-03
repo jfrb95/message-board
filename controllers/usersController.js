@@ -52,7 +52,13 @@ exports.logUserInPOST = function(req, res, next) {
     //if there is no such user in the database:
     if (!user) { return res.status(400).render("log-in", { noUserFound: info.message || 'Invalid credentials' }); }
   
-    req.login(user, next);
+    req.login(user, function(error) {
+      if (error) {
+        return next(error);
+      }
+
+      return res.redirect("/");
+    });
   })(req, res, next);
 };
 

@@ -1,0 +1,29 @@
+<h1>Messages Page</h1>
+
+<% if (locals.user) { %>
+  <% console.log("nice", locals.user); %>
+  <p><% locals.user %></p>
+<% }; %>
+
+<section class="section-container">
+  <h2>New Message</h2>
+  <form action="/messages" action="POST">
+
+  </form>
+</section>
+
+<section class="section-container">
+  <h2>All Messages</h2>
+  <% messages.forEach(message => { %>
+    <div class="message">
+      <h3><%= message.title %></h3>
+      <p class="message-author">
+        <%= message.username %>
+        <span class="message-date">message.date</span>
+      </p>
+      <p class="message-text"><%= message.text %></p>
+    </div>
+  <% }); %>
+</section>
+
+<%- contentFor('title') %> Messages || The Message Board
