@@ -1,16 +1,20 @@
 <h1>Messages Page</h1>
+<section class="section-container"></section>
+  <% if (locals.user) { %>
 
-<% if (locals.user) { %>
-  <% console.log("nice", locals.user); %>
-  <p><% locals.user %></p>
-<% }; %>
+    <h2>New Message</h2>
+    <form action="/messages" action="POST">
+    </form>
 
-<section class="section-container">
-  <h2>New Message</h2>
-  <form action="/messages" action="POST">
+  <% } else { %>
 
-  </form>
+    <h2>Log in to post a message.</h2>
+    <a href="/users/log-in">Log in</a>
+
+  <% }; %>
+
 </section>
+
 
 <section class="section-container">
   <h2>All Messages</h2>

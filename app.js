@@ -39,7 +39,7 @@ app.use(session({
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 
-
+/*
 //route debugging:
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);
@@ -48,6 +48,7 @@ app.use((req, res, next) => {
   console.log('---');
   next();
 });
+*/
 
 app.use("/messages", messagesRouter);
 app.use("/users", usersRouter);
