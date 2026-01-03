@@ -54,6 +54,16 @@ const validateNewUser = [
     })
 ];
 
+const logInErrMsg = `Please enter a valid username.`;
+
+const validateLogInUser = [
+  body("username")
+    .trim()
+    .notEmpty().withMessage(`Please enter a username`)
+    .isAlphanumeric().withMessage(`${logInErrMsg}`)
+    .isLength({ min: 3, max: 15 }).withMessage(`${logInErrMsg}`)
+];
+
 usersRouter.get("/", usersController.usersPageGET);
 
 usersRouter.route("/sign-up")
@@ -88,10 +98,30 @@ usersRouter.route("/sign-up")
 usersRouter.route("/log-in")
   .get(usersController.logInPageGET)
   .post(
-    usersController.logUserInPOST,
-    function (req, res) {
-      res.redirect('/');
-    }
+    validateLogInUser,
+    function (req, res, next) {
+      const result = validationResult(req);
+
+      if (!result.isEmpty()) {
+
+        const errors = {};
+
+        result.errors.forEach(error => {
+          if (!errors.hasOwnProperty(error.path)) {
+            errors[error.path] = [error.msg];
+          } else {
+            errors[error.path].push(error.msg);
+          };
+        });
+
+        return res.status(400).render("log-in", {
+          errors,
+        });
+      }
+
+      next();
+    },
+    usersController.logUserInPOST
   )
 ;
 

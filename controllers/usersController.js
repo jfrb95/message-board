@@ -46,10 +46,15 @@ exports.logInPageGET = async function(req, res) {
   res.render("log-in");
 };
 
-exports.logUserInPOST = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/"
-});
+exports.logUserInPOST = function(req, res, next) {
+  passport.authenticate("local", function(error, user, info) {
+    if (error) { return next(error); }
+    //if there is no such user in the database:
+    if (!user) { return res.status(400).render("log-in", { noUserFound: info.message || 'Invalid credentials' }); }
+  
+    req.login(user, next);
+  })(req, res, next);
+};
 
 exports.usernameExists = async function(username) {
   const { rows } = await db.findUsername(username);

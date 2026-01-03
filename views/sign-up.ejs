@@ -14,22 +14,57 @@
   </label>
   <label>
     Last Name
+    <% if (locals.errors && locals.errors.hasOwnProperty("last-name")) { %>
+      <% locals.errors["last-name"].forEach(msg=> { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="last-name" name="last-name">
   </label>
   <label>
     Username
+    <% if (locals.errors && locals.errors.hasOwnProperty("username")) { %>
+      <% locals.errors["username"].forEach(msg=> { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="username" name="username" required>
   </label>
   <label>
     Email
+    <% if (locals.errors && locals.errors.hasOwnProperty("email")) { %>
+      <% locals.errors["email"].forEach(msg=> { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="email" name="email" required>
   </label>
   <label>
     Password (change type to password)
+    <% if (locals.errors && locals.errors.hasOwnProperty("password")) { %>
+      <% locals.errors["password"].forEach(msg=> { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="password" name="password" required>
   </label>
   <label>
     Confirm Password (change type to password)
+    <% if (locals.errors && locals.errors.hasOwnProperty("confirm-password")) { %>
+      <% locals.errors["confirm-password"].forEach(msg=> { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="confirm-password" name="confirm-password" required>
   </label>
   <button>Register Account</button>

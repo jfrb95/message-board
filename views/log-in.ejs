@@ -3,6 +3,13 @@
 <form action="/users/log-in" method="POST">
   <label>
     Username
+    <% if (locals.errors && locals.errors.hasOwnProperty("username")) { %>
+      <% locals.errors["username"].forEach(msg=> { %>
+        <span class="input-error-message">
+          <%= msg %>
+        </span>
+      <% }); %>
+    <% }; %>
     <input type="text" id="username" name="username" required>
   </label>
   <label>
@@ -11,5 +18,10 @@
   </label>
   <button>Log In</button>
 </form>
+<% if (locals.noUserFound) { %>
+  <span class="input-error-message">
+    <%= locals.noUserFound %>
+  </span>
+<% }; %>
 
 <%- contentFor('title') %> Log-In || The Message Board
