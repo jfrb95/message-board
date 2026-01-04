@@ -2,6 +2,9 @@ const pool = require("./pool");
 
 const db = {
 
+  /*
+      USERS
+              */
   async addNewUser(firstName, lastName, username, email, password) {
     await pool.query(
       `
@@ -37,10 +40,19 @@ const db = {
     return result;
   },
 
+  /*
+      Messages
+                */
+
   async getAllMessages() {
     const { rows } = await pool.query("SELECT * FROM messages");
     return rows;
   },
+
+  async addNewMessage(title, timestamp, text, user_id) {
+    console.log("new message added", title, timestamp, text, user_id, "finish this function in queries.js");
+  },
+
 };
 
 module.exports = db;

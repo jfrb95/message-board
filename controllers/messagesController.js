@@ -8,3 +8,8 @@ exports.messagesPageGET = async function(req, res) {
     messages: await db.getAllMessages() 
   });
 };
+
+exports.newMessagePOST = async function(req, res) {
+  await db.addNewMessage("nice", "nice", "nice", "nice");
+  res.redirect("/messages");
+};

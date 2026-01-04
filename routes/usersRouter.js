@@ -70,28 +70,6 @@ usersRouter.route("/sign-up")
   .get(usersController.signUpPageGET)
   .post(
     validateNewUser,
-    function(req, res, next) {
-      const result = validationResult(req);
-
-      if (!result.isEmpty()) {
-
-        const errors = {};
-
-        result.errors.forEach(error => {
-          if (!errors.hasOwnProperty(error.path)) {
-            errors[error.path] = [error.msg];
-          } else {
-            errors[error.path].push(error.msg);
-          };
-        });
-
-        return res.status(400).render("sign-up", {
-          errors,
-        });
-      }
-
-      next();
-    },
     usersController.signUpPOST)
 ;
 
@@ -99,28 +77,6 @@ usersRouter.route("/log-in")
   .get(usersController.logInPageGET)
   .post(
     validateLogInUser,
-    function (req, res, next) {
-      const result = validationResult(req);
-
-      if (!result.isEmpty()) {
-
-        const errors = {};
-
-        result.errors.forEach(error => {
-          if (!errors.hasOwnProperty(error.path)) {
-            errors[error.path] = [error.msg];
-          } else {
-            errors[error.path].push(error.msg);
-          };
-        });
-
-        return res.status(400).render("log-in", {
-          errors,
-        });
-      }
-
-      next();
-    },
     usersController.logUserInPOST
   )
 ;
