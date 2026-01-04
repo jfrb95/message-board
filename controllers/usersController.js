@@ -3,6 +3,8 @@ const passport = require("../config/passport");
 const bcrypt = require("bcryptjs");
 const { validationResult, matchedData } = require("express-validator");
 
+//REWRITE VALIDATION SECTIONS IN SIGNUPPOST AND LOGINPOST
+
 exports.usersPageGET = async function(req, res) {
 
   const users = await db.getAllUsers();
