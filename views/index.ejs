@@ -1,14 +1,18 @@
-<h1>Welcome to The Message Board</h1>
+<section class="section-container">
+  <h1>Welcome to The Message Board</h1>
+</section>
 
-<% if (locals.user) { %>
-  <h2>Welcome back, <%= user.username %></h2>
-  <a href="/users/log-out">Log Out</a>
-<% } else { %>
-
-  <a href="/users/log-in">Log in here</a>
-
-  <a href="/users/sign-up">Sign up here</a>
-
-<% } %>
+<section class="section-container">
+  <% if (locals.user) { %>
+    <h2>Welcome back, <%= user.username %></h2>
+    <a href="/users/log-out">Log Out</a>
+  <% } else { %>
+  
+    <a href="/users/log-in">Log in here</a>
+  
+    <a href="/users/sign-up">Sign up here</a>
+  
+  <% } %>
+</section>
 
 <%- contentFor('title') %> The Message Board

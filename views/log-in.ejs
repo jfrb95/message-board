@@ -1,27 +1,31 @@
-<h1>The Message Board Log In</h1>
+<section class="section-container">
+  <h1>The Message Board Log In</h1>
+</section>
 
-<form action="/users/log-in" method="POST">
-  <label>
-    Username
-    <% if (locals.errors && locals.errors.hasOwnProperty("username")) { %>
-      <% locals.errors["username"].forEach(msg=> { %>
-        <span class="input-error-message">
-          <%= msg %>
-        </span>
-      <% }); %>
-    <% }; %>
-    <input type="text" id="username" name="username" required>
-  </label>
-  <label>
-    Password
-    <input type="text" id="password" name="password" required>
-  </label>
-  <button>Log In</button>
-</form>
-<% if (locals.noUserFound) { %>
-  <span class="input-error-message">
-    <%= locals.noUserFound %>
-  </span>
-<% }; %>
+<section class="section-container">
+  <form action="/users/log-in" method="POST">
+    <label>
+      Username
+      <% if (locals.errors && locals.errors.hasOwnProperty("username")) { %>
+        <% locals.errors["username"].forEach(msg=> { %>
+          <span class="input-error-message">
+            <%= msg %>
+          </span>
+        <% }); %>
+      <% }; %>
+      <input type="text" id="username" name="username" required>
+    </label>
+    <label>
+      Password
+      <input type="text" id="password" name="password" required>
+    </label>
+    <button>Log In</button>
+  </form>
+  <% if (locals.noUserFound) { %>
+    <span class="input-error-message">
+      <%= locals.noUserFound %>
+    </span>
+  <% }; %>
+</section>
 
 <%- contentFor('title') %> Log-In || The Message Board
