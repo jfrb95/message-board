@@ -9,9 +9,12 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 });
 
 exports.messagesPageGET = async function(req, res) {
+
+  const messages = await db.getAllMessages();
+
   res.render("messages", { 
     user: req.user,
-    messages: await db.getAllMessages(),
+    messages,
     dateFormatter
   });
 };
