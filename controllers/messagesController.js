@@ -3,11 +3,16 @@ const passport = require("../config/passport");
 const bcrypt = require("bcryptjs");
 const { validationResult, matchedData } = require("express-validator");
 
+const dateFormatter = new Intl.DateTimeFormat(undefined, { 
+  dateStyle: 'medium',
+  timeStyle: 'short'
+});
 
 exports.messagesPageGET = async function(req, res) {
   res.render("messages", { 
     user: req.user,
-    messages: await db.getAllMessages() 
+    messages: await db.getAllMessages(),
+    dateFormatter
   });
 };
 

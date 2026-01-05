@@ -45,7 +45,14 @@ const db = {
                 */
 
   async getAllMessages() {
-    const { rows } = await pool.query("SELECT * FROM messages");
+    const { rows } = await pool.query(
+      `
+      SELECT users.id, title, timestamp, text, username FROM messages
+      LEFT JOIN users
+      ON messages.user_id=users.id
+      `
+    );
+    console.log(rows);
     return rows;
   },
 

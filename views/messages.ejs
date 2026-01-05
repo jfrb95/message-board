@@ -38,7 +38,7 @@
       <h3><%= message.title %></h3>
       <p class="message-author">
         <%= message.username %>
-        <span class="message-date"><%= message.date %></span>
+        <span class="message-date"><%= locals.dateFormatter.format(message.date) %></span>
       </p>
       <p class="message-text"><%= message.text %></p>
     </div>
