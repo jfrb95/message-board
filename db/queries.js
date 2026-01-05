@@ -52,7 +52,6 @@ const db = {
       ON messages.user_id=users.id
       `
     );
-    console.log(rows);
     return rows;
   },
 
@@ -62,6 +61,16 @@ const db = {
       INSERT INTO messages
       VALUES (DEFAULT, $1, $2, $3, $4);
       `, [title, timestamp, text, user_id]
+    );
+  },
+
+  async makeUserMember(userId) {
+    await pool.query(
+      `
+      UPDATE users
+      SET membership_status='yes'
+      WHERE id=$1;
+      `, [userId]
     );
   },
 };

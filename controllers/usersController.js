@@ -3,7 +3,12 @@ const passport = require("../config/passport");
 const bcrypt = require("bcryptjs");
 const { validationResult, matchedData } = require("express-validator");
 
-//REWRITE VALIDATION SECTIONS IN SIGNUPPOST AND LOGINPOST
+const membershipSecretPassword = "secretpassword1";
+
+//REWRITE VALIDATION SECTIONS IN 
+// SIGNUPPOST
+// LOGINPOST
+// APPLYFORMEMBERSHIPPOST
 
 exports.usersPageGET = async function(req, res) {
 
@@ -113,4 +118,48 @@ exports.usernameExists = async function(username) {
   const result = rows[0].exists;
 
   return result;
+};
+
+exports.membershipApplicationPageGET = async function(req, res) {
+  res.render("membership-application.ejs");
+};
+
+exports.applyForMembershipPOST = async function(req, res) {
+  try {
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) {
+
+      const errors = {};
+
+      result.errors.forEach(error => {
+        if (!errors.hasOwnProperty(error.path)) {
+          errors[error.path] = [error.msg];
+        } else {
+          errors[error.path].push(error.msg);
+        };
+      });
+
+      return res.status(400).render("membership-application", {
+        user: req.user,
+        errors,
+      });
+    }
+
+    const data = matchedData(req);
+
+    if (data["membership-password"] === membershipSecretPassword) {
+      await db.makeUserMember(req.user.id);
+      res.redirect("/");
+    } else {
+      return res.status(401).render("membership-application", {
+        user: req.user
+      });
+    }
+
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+
 };

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const messagesController = require("../controllers/messagesController");
-const { body, validationResult, matchedData } = require("express-validator");
+const { body } = require("express-validator");
 
 const messagesRouter = Router();
 

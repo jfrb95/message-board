@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const usersController = require("../controllers/usersController");
 const usersRouter = Router();
-const { body, validationResult, matchedData } = require("express-validator");
+const { body } = require("express-validator");
 
 const charErr = "must contain only letters.";
 const lengthErr = "must be shorter than 15 characters.";
@@ -64,6 +64,14 @@ const validateLogInUser = [
     .isLength({ min: 3, max: 15 }).withMessage(`${logInErrMsg}`)
 ];
 
+const validateSecretPassword = [
+  body("membership-password")
+    .trim()
+    .notEmpty().withMessage("Please enter a password.")
+    .isAlphanumeric().withMessage("Only letters and numbers are valid characters.")
+    .isLength({ min: 1, max: 255}).withMessage("Must be between 1 and 255 characters.")
+];
+
 usersRouter.get("/", usersController.usersPageGET);
 
 usersRouter.route("/sign-up")
@@ -91,5 +99,13 @@ usersRouter.get("/log-out", (req, res, next) => {
 });
 
 usersRouter.post("/:userId/delete", usersController.deleteUserPOST);
+
+usersRouter.route("/membership")
+  .get(usersController.membershipApplicationPageGET)
+  .post(
+    validateSecretPassword,
+    usersController.applyForMembershipPOST
+  )
+;
 
 module.exports = usersRouter;
