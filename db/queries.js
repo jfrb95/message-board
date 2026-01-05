@@ -50,9 +50,13 @@ const db = {
   },
 
   async addNewMessage(title, timestamp, text, user_id) {
-    console.log("new message added", title, timestamp, text, user_id, "finish this function in queries.js");
+    await pool.query(
+      `
+      INSERT INTO messages
+      VALUES (DEFAULT, $1, $2, $3, $4);
+      `, [title, timestamp, text, user_id]
+    );
   },
-
 };
 
 module.exports = db;

@@ -33,8 +33,8 @@ exports.newMessagePOST = async function(req, res) {
     });
   };
 
-  req.matchedData = matchedData(req);
+  const data = matchedData(req);
 
-  await db.addNewMessage("nice", "nice", "nice", "nice");
+  await db.addNewMessage(data["message-title"], new Date(Date.now()), data["message-text"], req.user.id);
   res.redirect("/messages");
 };
