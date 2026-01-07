@@ -50,8 +50,10 @@ exports.signUpPOST = async function(req, res, next) {
     const username = data['username'];
     const email = data['email'];
     const hashedPassword = await bcrypt.hash(data['password'], 10);
+    const isAdmin = data['is-admin'];
 
-    await db.addNewUser(firstName, lastName, username, email, hashedPassword);
+
+    await db.addNewUser(firstName, lastName, username, email, hashedPassword, isAdmin);
     res.redirect("/");
 
   } catch (error) {

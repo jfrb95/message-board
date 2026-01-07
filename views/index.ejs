@@ -7,7 +7,11 @@
     <h2>Welcome back, <%= user.username %></h2>
     <a href="/users/log-out">Log Out</a>
 
-    <p>Want to become a member? <a href="/users/membership">Apply Here</a></p>
+    <% if (locals.user["membership_status"]) { %>
+      <p>Congratulations, you are a member!</p>
+    <% } else { %>
+      <p>Want to become a member? <a href="/users/membership">Apply Here</a></p>
+    <% }; %>
   <% } else { %>
   
     <a href="/users/log-in">Log in here</a>

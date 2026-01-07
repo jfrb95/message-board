@@ -5,12 +5,12 @@ const db = {
   /*
       USERS
               */
-  async addNewUser(firstName, lastName, username, email, password) {
+  async addNewUser(firstName, lastName, username, email, password, isAdmin) {
     await pool.query(
       `
       INSERT INTO users
-      VALUES (DEFAULT, $1, $2, $3, $5, DEFAULT, $4);
-      `, [firstName, lastName, username, email, password]
+      VALUES (DEFAULT, $1, $2, $3, $5, DEFAULT, $4, $6);
+      `, [firstName, lastName, username, email, password, isAdmin]
     );
   },
 
@@ -68,7 +68,7 @@ const db = {
     await pool.query(
       `
       UPDATE users
-      SET membership_status='yes'
+      SET membership_status=true
       WHERE id=$1;
       `, [userId]
     );

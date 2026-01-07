@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const usersController = require("../controllers/usersController");
 const usersRouter = Router();
-const { body } = require("express-validator");
+const { body, check } = require("express-validator");
 
 const charErr = "must contain only letters.";
 const lengthErr = "must be shorter than 15 characters.";
@@ -51,7 +51,9 @@ const validateNewUser = [
         throw new Error(`Passwords do not match.`);
       }
       return true;
-    })
+    }),
+  check('is-admin')
+    .toBoolean()
 ];
 
 const logInErrMsg = `Please enter a valid username.`;

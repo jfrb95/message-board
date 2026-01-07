@@ -39,10 +39,14 @@
   <% messages.forEach(message => { %>
     <div class="message">
       <h3><%= message.title %></h3>
-      <p class="message-author">
-        <%= message.username %>
-        <span class="message-date"><%= locals.dateFormatter.format(Date.parse(message.timestamp)) %></span>
-      </p>
+      <% if (locals.user && locals.user["membership_status"]) { %>
+        <p class="message-author">
+          <%= message.username %>
+          <span class="message-date"><%= locals.dateFormatter.format(Date.parse(message.timestamp)) %></span>
+        </p>
+      <% } else { %>
+        <p>Please log in as a member to view author and date posted.</p>
+      <% }; %>
       <p class="message-text"><%= message.text %></p>
     </div>
   <% }); %>
